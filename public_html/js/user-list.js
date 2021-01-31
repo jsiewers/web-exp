@@ -18,7 +18,6 @@ UserListTemplate.innerHTML = `
 class UserList extends HTMLElement {
     constructor() {
         super();
-
         let shadowRoot = this.attachShadow({
             mode: 'open'
         }).appendChild(UserListTemplate.content.cloneNode(true));
@@ -56,16 +55,11 @@ class UserList extends HTMLElement {
     createUserItem(data) {
         data.map(user => {
             let userItem = new UserItem;
-            Object.keys(user).map(userprop => {
-                let p = document.createElement("p");
-                p.setAttribute("slot", userprop);
-                p.innerHTML = user[userprop];
-                userItem.appendChild(p);
-            })
-            console.log(userItem);
+            userItem.setAllProps(user);
             this.appendChild(userItem);
         });
     }
+
 
 
     buildUserList(url) {

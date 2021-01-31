@@ -12,7 +12,7 @@ UserItemTemplate.innerHTML = `
   p#title {
     font-weight: 700;
   }
-  p#attr {
+  p.attr {
     color:#fff;
     font-weight: 300;
   }
@@ -20,6 +20,7 @@ UserItemTemplate.innerHTML = `
     color:var(--c3);
     font-weight: 500;
   }
+
  
 </style>
        
@@ -34,6 +35,8 @@ UserItemTemplate.innerHTML = `
 class UserItem extends HTMLElement {
     constructor() {
         super();
+
+        const is_connected = false;
 
         let shadowRoot = this.attachShadow({
             mode: 'open'
@@ -54,12 +57,24 @@ class UserItem extends HTMLElement {
         console.log("adding home elements");
     }
 
+    setAllProps(data) {
+      Object.keys(data).map(userprop => {
+            let p = document.createElement("p");
+            p.setAttribute("slot", userprop);
+            p.innerHTML = data[userprop];
+            this.appendChild(p);
+        })
+    }
+
     addLink(evt, elem) {
-        //console.log(elem.firstChild.href);
+        console.log(elem.querySelector("[slot='id']").innerHTML);
         //evt.preventDefault();
     }
 
     connectedCallback() {
+        console.log("in connected callback van user-item: " + this.isConnected);
+        let emailLink = this.shadowRoot.getElementById("email");
+        emailLink.addEventListener('click', (e) => this.addLink(e, this));
     }
 }
 
