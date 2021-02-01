@@ -52,6 +52,10 @@ class UserList extends HTMLElement {
 
     }
 
+    userListState(data) {
+        console.log(data);
+    }
+
     createUserItem(data) {
         data.map(user => {
             let userItem = new UserItem;
@@ -69,10 +73,6 @@ class UserList extends HTMLElement {
             })
             .then(function (data) {
                 this.createUserItem(data);
-                // let userItems =
-                //     document.querySelector('user-list').innerHTML = "koekoek";
-                //
-                // return data;
             }.bind(this))
             .catch(function (error) {
                 console.log('Request failed', error)

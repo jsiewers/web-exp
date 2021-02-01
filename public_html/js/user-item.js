@@ -66,13 +66,13 @@ class UserItem extends HTMLElement {
         })
     }
 
-    addLink(evt, elem) {
+    addLink(evt, elem, stateHolder) {
         console.log(elem.querySelector("[slot='id']").innerHTML);
         //evt.preventDefault();
     }
 
+
     connectedCallback() {
-        console.log("in connected callback van user-item: " + this.isConnected);
         let emailLink = this.shadowRoot.getElementById("email");
         emailLink.addEventListener('click', (e) => this.addLink(e, this));
     }
