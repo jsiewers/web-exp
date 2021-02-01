@@ -1,6 +1,6 @@
 # Web-exp
 
-Experimenteren en testen met 2020+ webtechniek.
+Experimenteren en testen met 2021+ webtechniek.
 * css grid
 * css flexbox
 * html custom components
