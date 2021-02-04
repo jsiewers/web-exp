@@ -29,7 +29,7 @@ CardElementTemplate.innerHTML = `
          <div id="link"><a href="#">Lees meer...</a></div>
        `;
 
-class CardElement extends HTMLElement {
+export class CardElement extends HTMLElement {
     constructor() {
         super();
 
@@ -61,8 +61,3 @@ class CardElement extends HTMLElement {
         link.addEventListener('click', (e) => this.addLink(e, this));
     }
 }
-
-customElements.define('card-element', CardElement);
-customElements.whenDefined('card-element').then(() => {
-    console.log("card-element defined")
-})

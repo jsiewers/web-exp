@@ -15,56 +15,26 @@ UserListTemplate.innerHTML = `
 `;
 
 
-class UserList extends HTMLElement {
+export class UserList extends HTMLElement {
     constructor() {
         super();
         let shadowRoot = this.attachShadow({
             mode: 'open'
         }).appendChild(UserListTemplate.content.cloneNode(true));
-
-    }
-
-
-    doeIets(t) {
-        console.log(t);
+        this.userItems = [];
     }
 
     attributeChangedCallback() {
         console.log("attribute changed");
     }
 
-    addHomeElements() {
-        console.log("adding home elements");
-    }
-
-    addLink(evt, elem) {
-        //console.log(elem.firstChild.href);
-        //evt.preventDefault();
-    }
-
     connectedCallback() {
-        // this.createUserItems();
         this.buildUserList('http://localhost:8888/users');
-
     }
 
     updateElement() {
 
     }
-
-    userListState(data) {
-        console.log(data);
-    }
-
-    createUserItem(data) {
-        data.map(user => {
-            let userItem = new UserItem;
-            userItem.setAllProps(user);
-            this.appendChild(userItem);
-        });
-    }
-
-
 
     buildUserList(url) {
         fetch(url)
@@ -72,17 +42,28 @@ class UserList extends HTMLElement {
                 return response.json();
             })
             .then(function (data) {
-                this.createUserItem(data);
+                this.userItems =  data;
+                this.innerHTML = this.render();
             }.bind(this))
             .catch(function (error) {
                 console.log('Request failed', error)
             });
     }
 
+    render() {
+        console.log('rendering....');
+        return `
+        ${this.userItems.map(user => `
+            <user-item id="${user.id}">
+                <span slot="first_name">${user.first_name}</span>
+                <span slot="last_name">${user.last_name}</span>
+                <span slot="username">${user.username}</span>
+                <span slot="email">${user.email}</span>
+            </user-item>     
+        `
+        ).join(' ')}  
+        `
+
+    }
+
 }
-
-customElements.define('user-list', UserList);
-customElements.whenDefined('user-list').then(() => {
-    console.log("user-list defined")
-});
-

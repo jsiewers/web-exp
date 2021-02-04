@@ -30,7 +30,7 @@ AdItemTemplate.innerHTML = `
             </div>
 `;
 
-class AdItem extends HTMLElement {
+export class AdItem extends HTMLElement {
     constructor() {
         super();
 
@@ -64,8 +64,3 @@ class AdItem extends HTMLElement {
 
 
 }
-
-customElements.define('ad-item', AdItem);
-customElements.whenDefined('ad-item').then(() => {
-    console.log("ad-item defined")
-})

@@ -17,18 +17,17 @@
     <link href="/fonts/Public_Sans/public_sans.css" media="all" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/b11e76739c.js"></script>
-    <script defer src="js/nav-link.js"></script>
-    <script defer src="js/card-element.js"></script>
+   <!-- <script defer src="js/nav-link.js"></script>-->
+    <script defer type="module" src="js/index.js"></script>
+   <!--  <script defer src="js/card-element.js"></script>
     <script defer src="js/ad-panel.js"></script>
     <script defer src="js/user-item.js"></script>
     <script defer src="js/user-list.js"></script>
-    <script defer src="js/json.js"></script>
+    <script defer src="js/json.js"></script> -->
 </head>
 <html>
 
 <body>
-<user-list></user-list>
-
 <header id="top">
     <nav>
         <div id="brand"></div>
@@ -48,6 +47,11 @@
                 opleiding.</p>
         </card-element>
     </section>
+    <h2>Usercards</h2>
+    <user-list>
+        <user-item></user-item>
+    </user-list>
+
     <h2>Advertenties</h2>
     <ad-panel id="advertenties">
         <ad-item slot="item">

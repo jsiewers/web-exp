@@ -9,44 +9,50 @@ UserItemTemplate.innerHTML = `
     box-shadow: 3px 3px 5px 1px #cccbca;
     flex-grow:1;
   }
-  p#title {
+  p.first_name {
     font-weight: 700;
   }
-  p.attr {
+  
+  p {
     color:#fff;
-    font-weight: 300;
-  }
-  p#naw {
     color:var(--c3);
     font-weight: 500;
   }
+  
+  button {
+    color:#fff;
+    border: none;
+    outline:none;
+    border-radius:8px;
+    padding:10px;
+    background-color: var(--c4);
+   }
+
+   button.buttonup {
+     background-color: var(--c4);
+    }
+    button.buttondown {
+      background-color: #fff;
+    }
 
  
 </style>
        
             <div>
-                <p id="first_name" class="attr"><slot name="first_name">first_name</slot></p>
-                <p id="last_name" class="attr"><slot name="last_name">last_name</slot></p>
-                <p id="username" class="attr"><slot name="username">username</slot></p>
-                <p id="email" class="attr"><slot name="email">email</slot>
+                <p class="first_name"><slot name="first_name">first_name</slot></p>
+                <p class="last_name"><slot name="last_name">last_name</slot></p>
+                <p class="username"><slot name="username">username</slot></p>
+                <button class="buttonup"><slot name="email">email</slot></button>
             </div>
 `;
 
-class UserItem extends HTMLElement {
+export class UserItem extends HTMLElement {
     constructor() {
         super();
-
-        const is_connected = false;
 
         let shadowRoot = this.attachShadow({
             mode: 'open'
         }).appendChild(UserItemTemplate.content.cloneNode(true));
-
-    }
-
-
-    doeIets(t) {
-        console.log(t);
     }
 
     attributeChangedCallback() {
@@ -57,28 +63,41 @@ class UserItem extends HTMLElement {
         console.log("adding home elements");
     }
 
-    setAllProps(data) {
-      Object.keys(data).map(userprop => {
-            let p = document.createElement("p");
-            p.setAttribute("slot", userprop);
-            p.innerHTML = data[userprop];
-            this.appendChild(p);
-        })
+    // setProps(data) {
+    //   Object.keys(data).map(userprop => {
+    //         let p = document.createElement("p");
+    //         p.setAttribute("slot", userprop);
+    //         p.innerHTML = data[userprop];
+    //         this.appendChild(p);
+    //     })
+    // }
+
+    buttonDown(evt, elem, item) {
+        console.log(elem.id);
+        console.log(item.className);
+        if(item.className === "buttonup") {
+            item.className="buttondown";
+        } else {
+            item.className="buttonup";
+        }
+        // document.getElementById(elem.id).first_name.backgroundColor = "#ccc";
+        //evt.preventDefault();
     }
 
-    addLink(evt, elem, stateHolder) {
-        console.log(elem.querySelector("[slot='id']").innerHTML);
-        //evt.preventDefault();
+    buttonToggle(evt, elem, item) {
+        console.log(elem.id);
+        console.log(item.className);
+        console.log(this);
+
+
     }
 
 
     connectedCallback() {
-        let emailLink = this.shadowRoot.getElementById("email");
-        emailLink.addEventListener('click', (e) => this.addLink(e, this));
+        let item = this.shadowRoot.querySelector('button');
+        item.addEventListener('mouseup', (e) => this.buttonDown(e, this, item));
+        item.addEventListener('mousedown', (e) => this.buttonDown(e, this, item));
+       // item.addEventListener('mouseup', (e) => this.buttonUp(e, this, item));
     }
-}
 
-customElements.define('user-item', UserItem);
-customElements.whenDefined('user-item').then(() => {
-    console.log("user-item defined")
-})
+}

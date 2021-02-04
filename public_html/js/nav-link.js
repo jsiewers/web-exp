@@ -4,7 +4,7 @@ NavLinkTemplate.innerHTML = `
             <span id="link"><slot name="title">blaberdie</slot></span>
 `;
 
-class NavLink extends HTMLElement {
+export class NavLink extends HTMLElement {
     constructor() {
         super();
 
@@ -42,7 +42,7 @@ class NavLink extends HTMLElement {
 
 }
 
-customElements.define('nav-link', NavLink);
-customElements.whenDefined('nav-link').then(() => {
-    console.log("nav-link defined")
-})
+// customElements.define('nav-link', NavLink);
+// customElements.whenDefined('nav-link').then(() => {
+//     console.log("nav-link defined")
+// })

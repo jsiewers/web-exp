@@ -14,7 +14,7 @@ AdPanelTemplate.innerHTML = `
             <div id="container"><slot name="item">blaberdie</slot></div>
 `;
 
-class AdPanel extends HTMLElement {
+export class AdPanel extends HTMLElement {
     constructor() {
         super();
 
@@ -48,8 +48,3 @@ class AdPanel extends HTMLElement {
 
 
 }
-
-customElements.define('ad-panel', AdPanel);
-customElements.whenDefined('ad-panel').then(() => {
-    console.log("ad-panel defined")
-})
