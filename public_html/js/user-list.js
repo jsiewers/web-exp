@@ -54,11 +54,11 @@ export class UserList extends HTMLElement {
         console.log('rendering....');
         return `
         ${this.userItems.map(user => `
-            <user-item id="${user.id}">
+            <user-item id="${user.id}" data-email="${user.email}">
                 <span slot="first_name">${user.first_name}</span>
                 <span slot="last_name">${user.last_name}</span>
                 <span slot="username">${user.username}</span>
-                <span slot="email">${user.email}</span>
+                <span slot="email">Send an email</span>
             </user-item>     
         `
         ).join(' ')}  

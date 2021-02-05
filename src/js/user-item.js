@@ -72,32 +72,23 @@ export class UserItem extends HTMLElement {
     //     })
     // }
 
-    buttonDown(evt, elem, item) {
-        console.log(elem.id);
-        console.log(item.className);
-        if(item.className === "buttonup") {
-            item.className="buttondown";
+    buttonToggle(el, button) {
+        console.log(el.id);
+        if(button.className === "buttonup") {
+            button.className="buttondown";
+            console.log(el.dataset.email);
         } else {
-            item.className="buttonup";
+            button.className="buttonup";
         }
         // document.getElementById(elem.id).first_name.backgroundColor = "#ccc";
         //evt.preventDefault();
     }
 
-    buttonToggle(evt, elem, item) {
-        console.log(elem.id);
-        console.log(item.className);
-        console.log(this);
-
-
-    }
-
 
     connectedCallback() {
-        let item = this.shadowRoot.querySelector('button');
-        item.addEventListener('mouseup', (e) => this.buttonDown(e, this, item));
-        item.addEventListener('mousedown', (e) => this.buttonDown(e, this, item));
-       // item.addEventListener('mouseup', (e) => this.buttonUp(e, this, item));
+        let button = this.shadowRoot.querySelector('button');
+        button.addEventListener('mouseup', (e) => this.buttonToggle(this, button));
+        button.addEventListener('mousedown', (e) => this.buttonToggle(this, button));
     }
 
 }

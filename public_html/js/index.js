@@ -47,23 +47,5 @@ class App {
     }
 }
 
-new App();
-const userList = document.querySelector('user-list');
-const url = 'http://localhost:8888/users';
 
-// fetch(url)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         data.map(user => {
-//             let userItem = UserItem.init();
-//
-//             //let userItem = new UserItem;
-//             userItem.setProps(user);
-//             userList.appendChild(userItem);
-//         });
-//     }.bind(this))
-//     .catch(function (error) {
-//         console.log('Request failed', error)
-//     });
+document.addEventListener("DOMContentLoaded", new App());

@@ -13,19 +13,20 @@
     <meta content="#FF8000" name="theme-color">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="default" name="apple-mobile-web-app-status-bar-style">
-    <!--    <link href="/fonts/JetBrains_Mono/jetbrains_mono.css" media="all" rel="stylesheet">-->
+    <link href="/fonts/JetBrains_Mono/jetbrains_mono.css" media="all" rel="stylesheet">
     <link href="/fonts/Public_Sans/public_sans.css" media="all" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script crossorigin="anonymous" src="https://kit.fontawesome.com/b11e76739c.js"></script>
-   <!-- <script defer src="js/nav-link.js"></script>-->
     <script defer type="module" src="js/index.js"></script>
+    <script defer src="js/prism.js"></script>
+    <script defer src="js/utility.js"></script>
    <!--  <script defer src="js/card-element.js"></script>
     <script defer src="js/ad-panel.js"></script>
     <script defer src="js/user-item.js"></script>
     <script defer src="js/user-list.js"></script>
-    <script defer src="js/json.js"></script> -->
 </head>
 <html>
+
 
 <body>
 <header id="top">
@@ -37,6 +38,7 @@
         </div>
     </nav>
 </header>
+
 <main>
     <section id="card-section">
         <card-element data-href="wat-moet-ik-weten">
@@ -51,6 +53,16 @@
     <user-list>
         <user-item></user-item>
     </user-list>
+    <pre>
+        <a style="float:right;color:#fff;font-size:1.2rem;line-height:0px;" href="#" onclick="CopyToClipboard('code-1'); return false;">
+            <i class="far fa-copy"></i>
+        </a>
+       <code class="language-php" id="code-1">require_once __DIR__ . '/../vendor/autoload.php;
+$containerBuilder = new ContainerBuilder();
+        </code>
+    </pre>
+
+
 
     <h2>Advertenties</h2>
     <ad-panel id="advertenties">
